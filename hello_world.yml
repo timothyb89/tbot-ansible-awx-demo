@@ -1,5 +1,18 @@
 - name: Hello World Sample
   hosts: all
+  pre_tasks:
+    - name: Wait for Teleport ssh_config to become available
+      delegate_to: localhost
+      run_once: true
+      ansible.builtin.wait_for:
+        path: /tbot-output/ssh_config
+        state: present
+        timeout: 300
+        delay: 5
+    - name: Configure SSH via Teleport
+      ansible.builtin.set_fact:
+        ansible_ssh_common_args: "-F /tbot-output/ssh_config -o StrictHostKeyChecking=yes"
+
   tasks:
     - name: Hello Message
       debug:
