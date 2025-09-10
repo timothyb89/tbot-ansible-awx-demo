@@ -26,6 +26,10 @@
       ansible.builtin.debug:
         msg: "Hello World!"
 
+    - name: Pause
+      ansible.builtin.pause:
+        seconds: 30
+
     - name: "Print node hostname"
       ansible.builtin.command: "hostname"
       changed_when: false
