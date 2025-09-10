@@ -2,6 +2,9 @@
   hosts: all
   gather_facts: false
   pre_tasks:
+    - name: Pause
+      ansible.builtin.pause:
+        seconds: 30
     - name: Wait for Teleport ssh_config to become available # noqa: run-once[task] (best effort)
       delegate_to: localhost
       run_once: true
@@ -26,9 +29,6 @@
       ansible.builtin.debug:
         msg: "Hello World!"
 
-    - name: Pause
-      ansible.builtin.pause:
-        seconds: 30
 
     - name: "Print node hostname"
       ansible.builtin.command: "hostname"
