@@ -1,5 +1,6 @@
 - name: Hello World Sample
   hosts: all
+  gather_facts: false
   pre_tasks:
     - name: Wait for Teleport ssh_config to become available
       delegate_to: localhost
