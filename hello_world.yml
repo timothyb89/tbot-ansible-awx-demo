@@ -11,8 +11,7 @@
       ansible.builtin.wait_for:
         path: /tbot-output/ssh_config
         state: present
-        timeout: 300
-        delay: 5
+        timeout: 120
 
     - name: Configure SSH via Teleport
       ansible.builtin.set_fact:
