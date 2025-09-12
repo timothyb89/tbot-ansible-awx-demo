@@ -4,7 +4,7 @@
   pre_tasks:
     - name: Pause
       ansible.builtin.pause:
-        seconds: 30
+        seconds: 10
 
     - name: Wait for Teleport ssh_config to become available # noqa: run-once[task] (best effort)
       delegate_to: localhost
@@ -14,11 +14,11 @@
         state: present
         timeout: 120
 
-    # - name: Configure SSH via Teleport
-    #   ansible.builtin.set_fact:
-    #     ansible_ssh_common_args: "-F /tbot-output/ssh_config -o StrictHostKeyChecking=yes"
-    #     #ansible_ssh_pipelining: false
-    #     ansible_ssh_pipelining: no
+    - name: Configure SSH via Teleport
+      ansible.builtin.set_fact:
+        # ansible_ssh_common_args: "-F /tbot-output/ssh_config"
+        # ansible_ssh_pipelining: false
+        ansible_ssh_pipelining: false
 
   tasks:
     - name: Main block
