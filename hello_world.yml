@@ -26,6 +26,7 @@
         # can run the module explicitly.
         - name: Gather facts
           ignore_errors: true
+          ignore_unreachable: true
           ansible.builtin.setup:
 
         - name: Hello Message
@@ -34,6 +35,7 @@
 
         - name: "Print node hostname"
           ansible.builtin.command: "hostname"
+          ignore_unreachable: true
           changed_when: false
       always:
         - name: Pause
