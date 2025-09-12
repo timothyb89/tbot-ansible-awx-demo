@@ -19,16 +19,23 @@
         ansible_ssh_common_args: "-F /tbot-output/ssh_config -o StrictHostKeyChecking=yes"
 
   tasks:
-    # We have to disable gather_facts at the start because we can't expect to
-    # have SSH access until Teleport's ssh_config is ready. Now that it is, we
-    # can run the module explicitly.
-    - name: Gather facts
-      ansible.builtin.setup:
+    - name: Main block
+      block:
+        # We have to disable gather_facts at the start because we can't expect to
+        # have SSH access until Teleport's ssh_config is ready. Now that it is, we
+        # can run the module explicitly.
+        - name: Gather facts
+          ignore_errors: true
+          ansible.builtin.setup:
 
-    - name: Hello Message
-      ansible.builtin.debug:
-        msg: "Hello World!"
+        - name: Hello Message
+          ansible.builtin.debug:
+            msg: "Hello World!"
 
-    - name: "Print node hostname"
-      ansible.builtin.command: "hostname"
-      changed_when: false
+        - name: "Print node hostname"
+          ansible.builtin.command: "hostname"
+          changed_when: false
+      always:
+        - name: Pause
+          ansible.builtin.pause:
+            seconds: 30
