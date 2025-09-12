@@ -40,4 +40,4 @@
       always:
         - name: Pause
           ansible.builtin.pause:
-            seconds: 30
+            seconds: 600
