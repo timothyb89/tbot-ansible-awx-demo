@@ -37,7 +37,12 @@
 
         - name: "Print node hostname"
           ansible.builtin.command: "hostname"
-          ignore_unreachable: true
+          # ignore_unreachable: true
+          changed_when: false
+
+        - name: "Print current date"
+          ansible.builtin.command: "date"
+          # ignore_unreachable: true
           changed_when: false
       # always:
       #   - name: Pause
