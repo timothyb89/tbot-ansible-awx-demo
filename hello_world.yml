@@ -4,6 +4,7 @@
   #  ANSIBLE_PIPELINING: "False"
   vars:
     ansible_pipelining: false
+    ansible_ssh_pipelining: false
   gather_facts: false
   pre_tasks:
     # - name: Pause
@@ -20,7 +21,7 @@
 
     - name: Configure SSH via Teleport
       ansible.builtin.set_fact:
-        ansible_ssh_common_args: "-F /tbot-output/ssh_config"
+        ansible_ssh_common_args: "-F /tbot-output/ssh_config -o ControlMaster=no"
         #ansible_ssh_pipelining: false
 
   tasks:
