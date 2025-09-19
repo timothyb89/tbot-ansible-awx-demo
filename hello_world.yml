@@ -17,7 +17,7 @@
     - name: Configure SSH via Teleport
       ansible.builtin.set_fact:
         ansible_ssh_common_args: "-F /tbot-output/ssh_config"
-        ansible_ssh_pipelining: false
+        #ansible_ssh_pipelining: false
 
   tasks:
     - name: Main block
