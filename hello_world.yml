@@ -1,12 +1,14 @@
 - name: Hello World Sample
   hosts: all
-  environment:
-    ANSIBLE_PIPELINING: "False"
+  #environment:
+  #  ANSIBLE_PIPELINING: "False"
+  vars:
+    ansible_pipelining: false
   gather_facts: false
   pre_tasks:
-    - name: Pause
-      ansible.builtin.pause:
-        seconds: 10
+    # - name: Pause
+    #   ansible.builtin.pause:
+    #     seconds: 10
 
     - name: Wait for Teleport ssh_config to become available # noqa: run-once[task] (best effort)
       delegate_to: localhost
